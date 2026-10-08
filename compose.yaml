@@ -1,0 +1,17 @@
+services:
+  windows:
+    image: dockurr/windows
+    env_file: .env
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 127.0.1.1:8006:8006
+      - 127.0.1.1:9833:3389/tcp
+      - 127.0.1.1:9833:3389/udp
+    volumes:
+      - ./storage:/storage
+    restart: on-failure
+    stop_grace_period: 2m
